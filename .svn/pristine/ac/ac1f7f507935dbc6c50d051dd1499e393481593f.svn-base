@@ -1,0 +1,74 @@
+package org.gcube.datanalysis.covid;
+
+import org.apache.log4j.BasicConfigurator;
+import org.gcube.common.scope.api.ScopeProvider;
+import org.gcube.contentmanagement.lexicalmatcher.utils.AnalysisLogger;
+import org.gcube.dataanalysis.ecoengine.configuration.AlgorithmConfiguration;
+
+import density.Maxent;
+
+public class TestMaxEntCovid {
+	
+	public static String username = "utente";
+	public static String password = "d4science";
+	public static String databaseurl = "jdbc:postgresql://postgresql-srv-dev.d4science.org/dataSpace";
+	
+	public static AlgorithmConfiguration createCfg() {
+		BasicConfigurator.configure();
+		System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog");
+		
+		AnalysisLogger.setLogger("./cfg/" + AlgorithmConfiguration.defaultLoggerFile);
+		AlgorithmConfiguration config = new AlgorithmConfiguration();
+
+		config.setConfigPath("./cfg/");
+		config.setPersistencePath("./");
+		config.setParam("DatabaseUserName", username);
+		config.setParam("DatabasePassword", password);
+		config.setParam("DatabaseURL", databaseurl);
+		config.setParam("DatabaseDriver", "org.postgresql.Driver");
+		String scope = "/d4science.research-infrastructures.eu/gCubeApps/BiodiversityLab";
+		config.setGcubeScope(scope);
+		
+		config.setParam("OutputTableLabel", "maxent_covid");
+		config.setParam("SpeciesName", "province");
+		config.setParam("MaxIterations", "10000");
+		config.setParam("DefaultPrevalence", "0.5");
+		config.setParam("OccurrencesTable", "geothermalsites");
+		config.setParam("LongitudeColumn", "decimalLongitude");
+		config.setParam("LatitudeColumn", "decimalLatitude");
+		config.setParam("XResolution", "0.5");
+		config.setParam("YResolution", "0.5");
+		config.setParam("Layers", ""
+				+ "869b92fa-5b9f-4010-9674-ecedb85a7d8c#" //1 Average Surface Air Temperature in 2018
+				+ "414c1c03-060e-4622-9b72-29dab0fa7f3c#" //2 Precipitation
+				+ "2603311a-b76b-4407-b2ca-43efa1475fb8#" //3 ETOPO2 v2 Worldwide Bathymetry and Topography
+				+ "642ca5e6-5d2a-4091-b898-af64be01f495" //4 CO2
+				); 
+		config.setParam("Z", "0");
+		config.setParam("TimeIndex", "0");
+		ScopeProvider.instance.set(scope);
+		return config;
+		
+	}
+	public static void main(String[] args) throws Exception{
+		
+		
+		//String filePath = "D:\\WorkFolder\\Experiments\\Covid-19\\covid_prod_diff_highrateMEP_italy_additional_world_countries.csv";
+		//String filePath = "D:\\WorkFolder\\Experiments\\Covid-19\\covid_prod_diff_highrateMEP_it_london.csv";
+		String filePath = "./covid_prod_diff_highrateMEP_it_london.csv";
+	
+		//call MaxEnt
+		Maxent me = new Maxent(filePath,"./ascfiles/","./maxentoutput/", 1000, 0.5, -9999);
+		me.executeMaxEnt();
+		
+		System.out.println("MaxEnt: OK MaxEnt!");
+		try{
+			System.out.println("MaxEnt: Result: "+me.getResult());
+		}catch(Exception e){
+			System.out.println("MaxEnt: error in retrieving the result "+e.getLocalizedMessage());
+		}
+		
+		
+		
+	}
+}
