@@ -123,7 +123,19 @@ public class Maxent {
 		runner.end();
 	}
 
-	
+	public void executeMaxEnt(Params p) {
+		
+		File outDir = new File(outputDirectory);
+		if (!outDir.exists())
+			outDir.mkdir();
+		
+		Utils.applyStaticParams(p);
+		p.setSelections();
+		Runner runner = new Runner(p);
+		runner.start();
+		runner.end();
+	}
+
 	public Params getParams() {
 		
 		
