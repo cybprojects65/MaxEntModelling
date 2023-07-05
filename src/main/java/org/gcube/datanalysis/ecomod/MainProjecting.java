@@ -18,8 +18,16 @@ public class MainProjecting {
 		String environmental_proj = args[4];
 		String outputfile =args[5];
 		
+		double prevalence = 0.5d;
+		
+		try {
+			prevalence = Double.parseDouble(args[6]);
+		}catch(Exception e) {
+			System.out.println("Prevalence not provided - defaulting to 0.5");
+		}
+		
 		//call MaxEnt
-		Maxent me = new Maxent(occurrences,environmental,outputfolder, 1000, 0.5, -9999);
+		Maxent me = new Maxent(occurrences,environmental,outputfolder, 1000, prevalence, -9999);
 				
 		Project pr = new Project(me.getParams());
 		pr.doProject(lambdaPath, environmental_proj, outputfile);
