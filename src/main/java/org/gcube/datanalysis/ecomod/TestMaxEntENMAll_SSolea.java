@@ -30,14 +30,14 @@ public class TestMaxEntENMAll_SSolea {
 		
 		String outputB = outputA+sp+"_2020.asc";
 		Project pr = new Project(me.getParams());
-		pr.doProject(lambdaPath, gridsB, outputB,false);
+		pr.doProject(lambdaPath, gridsB, outputB);
 		
 		
 		
 		String outputB1 = outputA+sp+"_2019.asc";
 		
 		Project pr1 = new Project(me.getParams());
-		pr1.doProject(lambdaPath, gridsB1, outputB1,false);
+		pr1.doProject(lambdaPath, gridsB1, outputB1);
 
 	}
 }

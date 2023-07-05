@@ -32,7 +32,7 @@ public class TestMaxEntProjectionEcoScopeSpecies {
 				&& (new File(basepathSpp)).exists() && (new File(basepath)).exists()) {
 			Maxent me = new Maxent(occurrenceRecords, grids, output, 1000, 0.5, -9999);
 			Project pr = new Project(me.getParams());
-			pr.doProject(lambdaPath, grids, output, false);
+			pr.doProject(lambdaPath, grids, output);
 		} else {
 			System.out.println("some file does not exist");
 		}
@@ -82,7 +82,7 @@ public class TestMaxEntProjectionEcoScopeSpecies {
 							&& (new File(basepath)).exists()) {
 						Maxent me = new Maxent(occurrenceRecords, grids, output, 1000, 0.5, -9999);
 						Project pr = new Project(me.getParams());
-						pr.doProject(lambdaPath, grids, output, false);
+						pr.doProject(lambdaPath, grids, output);
 					} else {
 						System.out.println("some file does not exist");
 					}

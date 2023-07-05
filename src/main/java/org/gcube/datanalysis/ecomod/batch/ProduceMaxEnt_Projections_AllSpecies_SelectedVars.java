@@ -70,10 +70,10 @@ public class ProduceMaxEnt_Projections_AllSpecies_SelectedVars {
 			String output3st = outputFolderSppPath+"/"+species+"_2020.asc";
 			
 			Project pr2019 = new Project(me.getParams());
-			pr2019.doProject(lambdaPath, grids2st, output2st,false);
+			pr2019.doProject(lambdaPath, grids2st, output2st);
 			
 			Project pr2020 = new Project(me.getParams());
-			pr2020.doProject(lambdaPath, grids3st, output3st,false);
+			pr2020.doProject(lambdaPath, grids3st, output3st);
 
 		}
 				

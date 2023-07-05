@@ -15,7 +15,7 @@ public class TestMaxEntProjection {
 		Maxent me = new Maxent(filePath,"./ascfiles/","./maxentoutput/", 1000, 0.5, -9999);
 		
 		Project pr = new Project(me.getParams());
-		pr.doProject(lambdaPath, gridsFolder, outputMaxEntRepro,true);
+		pr.doProject(lambdaPath, gridsFolder, outputMaxEntRepro);
 				
 		
 	}

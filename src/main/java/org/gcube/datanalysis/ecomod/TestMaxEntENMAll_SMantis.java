@@ -33,14 +33,14 @@ public class TestMaxEntENMAll_SMantis {
 		//String outputB = "D:\\WorkFolder\\Experiments\\ENM in Adriatic Sea\\MaxEntModels\\ensemblediva05\\Squilla_mantis_2019.asc";
 		String outputB = "D:\\WorkFolder\\Experiments\\ENM in Adriatic Sea\\MaxEntModels\\ensemblediva05\\Squilla_mantis_2020.asc";
 		Project pr = new Project(me.getParams());
-		pr.doProject(lambdaPath, gridsB, outputB,false);
+		pr.doProject(lambdaPath, gridsB, outputB);
 		
 		
 		String gridsB1 = "D:\\WorkFolder\\Experiments\\ENM in Adriatic Sea\\ASCEnvironmentalParametersForMaxEnt\\diva05\\2019\\";
 		String outputB1 = "D:\\WorkFolder\\Experiments\\ENM in Adriatic Sea\\MaxEntModels\\ensemblediva05\\Squilla_mantis_2019.asc";
 		
 		Project pr1 = new Project(me.getParams());
-		pr1.doProject(lambdaPath, gridsB1, outputB1,false);
+		pr1.doProject(lambdaPath, gridsB1, outputB1);
 
 	}
 }

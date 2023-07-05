@@ -19,6 +19,6 @@ public class TestMaxEntProjectionENM {
 		
 		Maxent me = new Maxent(occurrenceRecords,grids,output, 1000, 0.5, -9999);
 		Project pr = new Project(me.getParams());
-		pr.doProject(lambdaPath, grids, output,false);
+		pr.doProject(lambdaPath, grids, output);
 	}
 }

@@ -22,7 +22,7 @@ public class MainProjecting {
 		Maxent me = new Maxent(occurrences,environmental,outputfolder, 1000, 0.5, -9999);
 				
 		Project pr = new Project(me.getParams());
-		pr.doProject(lambdaPath, environmental_proj, outputfile, false);
+		pr.doProject(lambdaPath, environmental_proj, outputfile);
 		
 		try{
 			System.out.println("MaxEnt: Result: "+me.getResult());

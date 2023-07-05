@@ -12,8 +12,16 @@ public class MainTraining {
 		String environmental =args[1];
 		String outputfolder =args[2];
 		
+		double prevalence = 0.5d;
+		
+		try {
+			prevalence = Double.parseDouble(args[3]);
+		}catch(Exception e) {
+			System.out.println("Prevalence not provided - defaulting to 0.5");
+		}
+		
 		//call MaxEnt
-		Maxent me = new Maxent(occurrences,environmental,outputfolder, 1000, 0.5, -9999);
+		Maxent me = new Maxent(occurrences,environmental,outputfolder, 1000, prevalence, -9999);
 		Params p = Maxent.getDefaultParameters();
 
 		p.setResponsecurves(false);
@@ -31,7 +39,7 @@ public class MainTraining {
 		p.setEnvironmentallayers(me.environmentalLayersLocation);
 		p.setOutputdirectory(me.outputDirectory);
 		p.setMaximumiterations(me.maxIterations);
-		p.setDefaultprevalence(me.defaultPrevalence);
+		p.setDefaultprevalence(prevalence);
 		p.setNodata(me.noDataValue);
 		
 		me.executeMaxEnt(p);
